@@ -12,6 +12,8 @@ dist
 
 # dependencies
 /node_modules
+/.pnpm-store
+/.pnpm-cache
 
 # IDEs and editors
 /.idea

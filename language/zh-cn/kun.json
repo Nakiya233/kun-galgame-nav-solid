@@ -1,17 +1,17 @@
 {
-  "title": "鲲 Galgame 导航页",
+  "title": "未来ガジェット研究所导航站",
   "lightMode": "白天模式",
   "darkMode": "黑夜模式",
   "systemMode": "跟随系统",
-  "main": "主站",
-  "sub": "子网站",
+  "main": "服务器登录",
+  "sub": "其他服务",
   "about": "关于",
   "github": "GitHub 开源地址",
   "404": "页面未找到",
   "remake": "一键转生为萝莉",
   "loli": "请给我一只萝莉！",
   "forum": {
-    "title": "鲲 Galgame 论坛",
+    "title": "服务器登录入口",
     "details": "世界上最萌的 Galgame 论坛! 现阶段世界上最先进的 Galgame 资源发布网站! 永远不会有广告! 永远免费! Galgame 下载, Galgame 资源网站"
   },
   "backup": {

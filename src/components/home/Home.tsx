@@ -24,26 +24,18 @@ interface KunSite {
 const mainSites: KunSite[] = [
   {
     key: 'forum',
-    link: 'https://www.kungal.com',
-    githubLink: 'https://github.com/KUN1007/kun-galgame-nuxt3'
-  },
-  {
-    key: 'backup',
-    link: 'https://www.kungal.org',
-    githubLink: 'https://github.com/KUN1007/kun-galgame-nuxt3'
+    link: 'https://www.kungal.com'
   }
 ]
 
 const subSites: KunSite[] = [
   {
     key: 'sticker',
-    link: 'https://sticker.kungal.com',
-    githubLink: 'https://github.com/KUN1007/kun-galgame-stickers-sveltekit'
+    link: 'https://sticker.kungal.com'
   },
   {
     key: 'documents',
-    link: 'https://docs-kungal.nextmoe.dev/',
-    githubLink: 'https://github.com/KUN1007/soft.moe'
+    link: 'https://docs-kungal.nextmoe.dev/'
   },
   {
     key: 'oauth',
@@ -51,18 +43,15 @@ const subSites: KunSite[] = [
   },
   {
     key: 'kunui',
-    link: 'https://ui.kungal.com',
-    githubLink: 'https://github.com/kungal/kun-ui'
+    link: 'https://ui.kungal.com'
   },
   {
     key: 'down',
-    link: 'https://counter.kungal.com/',
-    githubLink: 'https://github.com/kungal/kun-galgame-counter'
+    link: 'https://counter.kungal.com/'
   },
   {
     key: 'nav',
-    link: 'https://nav.kungal.org',
-    githubLink: 'https://github.com/KUN1007/kun-galgame-nav-solid'
+    link: 'https://nav.kungal.org'
   }
 ]
 
@@ -107,6 +96,29 @@ const SiteCard: Component<{ site: KunSite }> = (props) => {
         </KunLink>
       </Show>
     </KunCard>
+  )
+}
+
+/**
+ * Card grid that stays balanced when a section has fewer cards than columns:
+ * with a single card it falls back to one full-width row, so the card fills the
+ * line instead of sitting in the first column.
+ */
+const SiteGrid: Component<{ sites: KunSite[]; columns?: 2 | 3 }> = (props) => {
+  const columns = () => props.columns ?? 2
+  const isSingle = () => props.sites.length === 1
+
+  return (
+    <div
+      class="grid grid-cols-1 gap-4"
+      classList={{
+        // A lone card spans the whole row; only 2+ cards use real columns.
+        'sm:grid-cols-2': !isSingle(),
+        'lg:grid-cols-3': !isSingle() && columns() === 3
+      }}
+    >
+      <For each={props.sites}>{(site) => <SiteCard site={site} />}</For>
+    </div>
   )
 }
 
@@ -248,16 +260,12 @@ export const Home: Component = () => {
 
       <section class="space-y-4">
         <KunHeader scale="h2" name={t('kun.main')} />
-        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <For each={mainSites}>{(site) => <SiteCard site={site} />}</For>
-        </div>
+        <SiteGrid sites={mainSites} />
       </section>
 
       <section class="space-y-4">
         <KunHeader scale="h2" name={t('kun.sub')} />
-        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <For each={subSites}>{(site) => <SiteCard site={site} />}</For>
-        </div>
+        <SiteGrid sites={subSites} columns={3} />
       </section>
 
       <section class="space-y-4">
